@@ -25,21 +25,22 @@ public class Postas {
     public void szallit() {
         try {
             PostaI posta = (PostaI) Naming.lookup("rmi://localhost:9000/posta");
-            while(true) {
+            while (true) {
                 List<Level> l = posta.elszallit(szj, meret);
-                for (Level level : l) {
-                    System.out.println(level);
+                if (l != null) {
+                    System.out.println(l);
                 }
-                Thread.sleep(r.nextInt((5 - 1) + 1) + 1);
+                Thread.sleep(r.nextInt(4) + 1 * 1000);
             }
-            
+
         } catch (Exception e) {
 
         }
     }
 
     public static void main(String[] args) {
-        
+        Postas p = new Postas((byte)1, 10);
+        p.szallit();
     }
 
 }
